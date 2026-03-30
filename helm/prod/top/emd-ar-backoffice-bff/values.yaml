@@ -21,7 +21,4 @@ microservice-chart:
   autoscaling:
     enable: true
     minReplica: 2
-    maxReplica: 3
-
-
-
+    maxReplica: 4

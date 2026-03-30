@@ -20,6 +20,3 @@ microservice-chart:
 
   autoscaling:
     enable: false
-
-
-

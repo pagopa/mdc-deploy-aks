@@ -22,6 +22,3 @@ microservice-chart:
     enable: true
     minReplica: 2
     maxReplica: 3
-
-
-

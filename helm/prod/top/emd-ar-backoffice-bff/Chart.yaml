@@ -1,0 +1,11 @@
+apiVersion: v2
+name: emd-ar-backoffice-bff
+description: emd-ar-backoffice-bff app
+type: application
+version: 1.0.0
+appVersion: 1.0.0
+dependencies:
+- name: microservice-chart
+  version: 8.1.1
+  repository: "https://pagopa.github.io/aks-microservice-chart-blueprint"
+

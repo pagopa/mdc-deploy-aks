@@ -35,6 +35,7 @@ parameters:
       - emd-citizen
       - emd-tpp
       - emd-notifier-sender
+      - emd-ar-backoffice-bff
 
   - name: APPS_MID
     displayName: Mid ArgoCD Apps. Set to [] to skip deployment.

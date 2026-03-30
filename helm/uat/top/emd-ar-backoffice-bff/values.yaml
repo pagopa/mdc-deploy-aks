@@ -1,0 +1,24 @@
+microservice-chart:
+  image:
+    repository: ghcr.io/pagopa/emd-ar-backoffice-bff
+    tag: latest
+    pullPolicy: Always
+
+  ingress:
+    host: "mdc.itn.internal.uat.cstar.pagopa.it"
+
+  envConfig:
+    CORS_ALLOWED_ORIGINS: "https://mdc.itn.internal.uat.cstar.pagopa.it"
+
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "100m"
+    limits:
+      memory: "1024Mi"
+      cpu: "400m"
+
+  autoscaling:
+    enable: true
+    minReplica: 2
+    maxReplica: 3

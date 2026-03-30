@@ -35,7 +35,6 @@ parameters:
       - emd-citizen
       - emd-tpp
       - emd-notifier-sender
-      - emd-ar-backoffice-fe
       - emd-ar-backoffice-bff
 
   - name: APPS_MID

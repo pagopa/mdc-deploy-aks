@@ -15,6 +15,7 @@ microservice-chart:
     APPLICATIONINSIGHTS_PREVIEW_PROFILER_ENABLED: "false"
     AUTH_EXPECTED_ISSUER: "https://api-mcshared.dev.cstar.pagopa.it/auth-itn/realms/mdc"
     AUTH_EXPECTED_AUDIENCE: "keycloak.pagopa.it"
+    KEYCLOAK_REALM: "mdc"
 
     JAVA_TOOL_OPTIONS: >-
       -XX:InitialRAMPercentage=75.0

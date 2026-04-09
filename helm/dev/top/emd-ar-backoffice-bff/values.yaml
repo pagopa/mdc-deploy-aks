@@ -13,6 +13,9 @@ microservice-chart:
     CORS_ALLOWED_ORIGINS: "https://mdc.itn.internal.dev.cstar.pagopa.it"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"
     APPLICATIONINSIGHTS_PREVIEW_PROFILER_ENABLED: "false"
+    AUTH_EXPECTED_ISSUER: "https://api-mcshared.dev.cstar.pagopa.it/auth-itn/realms/mdc"
+    AUTH_EXPECTED_AUDIENCE: "keycloak.pagopa.it"
+
     JAVA_TOOL_OPTIONS: >-
       -XX:InitialRAMPercentage=75.0
       -XX:MaxRAMPercentage=85.0

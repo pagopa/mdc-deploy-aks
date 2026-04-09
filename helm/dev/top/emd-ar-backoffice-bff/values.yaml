@@ -34,6 +34,10 @@ microservice-chart:
 
   envSecret:
     MY_KV_SECRET: cstar-d-itn-dev-aks-apiserver-url
+    KEYCLOAK_AUTH_URL: keycloak-url
+    KEYCLOAK_CLIENT_ID: emd-backoffice-client-id
+    KEYCLOAK_CLIENT_SECRET: emd-backoffice-client-secret
+
 
   keyvault:
     name: "cstar-d-itn-mdc-kv"

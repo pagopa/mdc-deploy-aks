@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: latest
+    tag: latest@sha256:658aac14816349503e1ae1b6cc5fd2613c89a3de09576b55529832f393afecdc
     pullPolicy: Always
 
   ingress:

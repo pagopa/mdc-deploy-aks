@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-citizen
-    tag: v1.1.0
+    tag: v1.1.0@sha256:17b3522e3d7b3f953f5d3bd2f32541317e07f0b5e65008ce7d78e05b19bb5897
     pullPolicy: Always
 
   ingress:

@@ -5,7 +5,7 @@ microservice-chart:
     pullPolicy: Always
 
   ingress:
-    host: "mdc.itn.internal.dev.cstar.pagopa.it"
+    host: "https://mdc.dev.cstar.pagopa.it"
 
   envConfig:
     APPLICATIONINSIGHTS_ROLE_NAME: "emdarbackofficebff"

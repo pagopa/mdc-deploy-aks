@@ -13,9 +13,14 @@ microservice-chart:
     CORS_ALLOWED_ORIGINS: "https://mdc.dev.cstar.pagopa.it"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"
     APPLICATIONINSIGHTS_PREVIEW_PROFILER_ENABLED: "false"
-    AUTH_EXPECTED_ISSUER: "https://api-mcshared.dev.cstar.pagopa.it/auth-itn/realms/mdc"
-    AUTH_EXPECTED_AUDIENCE: "keycloak.pagopa.it"
+    
     KEYCLOAK_REALM: "mdc"
+    KEYCLOAK_IDP_ALIAS: "selfcare-dev-jwt-grant"
+    
+    # SELFCARE TOKEN VALIDATION
+    JWT_SET_URI: https://dev.selfcare.pagopa.it/.well-known/jwks.json
+    AUTH_EXPECTED_ISSUER: "https://dev.selfcare.pagopa.it"
+    AUTH_EXPECTED_AUDIENCE: "https://api-mcshared.dev.cstar.pagopa.it/auth-itn/realms/mdc"
 
     JAVA_TOOL_OPTIONS: >-
       -XX:InitialRAMPercentage=75.0
@@ -39,8 +44,10 @@ microservice-chart:
   envSecret:
     MY_KV_SECRET: cstar-d-itn-dev-aks-apiserver-url
     KEYCLOAK_AUTH_URL: keycloak-url
-    KEYCLOAK_CLIENT_ID: emd-backoffice-client-id
-    KEYCLOAK_CLIENT_SECRET: emd-backoffice-client-secret
+    KEYCLOAK_MANAGER_CLIENT_ID: ar-backoffice-admin-client-id
+    KEYCLOAK_MANAGER_CLIENT_SECRET: ar-backoffice-admin-client-secret
+    KEYCLOAK_BACKOFFICE_CLIENT_ID: ar-backoffice-client-id
+    KEYCLOAK_BACKOFFICE_CLIENT_SECRET: ar-backoffice-client-secret
 
 
   keyvault:

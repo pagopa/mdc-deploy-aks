@@ -17,10 +17,9 @@ microservice-chart:
     KEYCLOAK_REALM: "mdc"
     KEYCLOAK_IDP_ALIAS: "selfcare-dev-jwt-grant"
 
-    # SELFCARE TOKEN VALIDATION
-    JWT_SET_URI: https://dev.selfcare.pagopa.it/.well-known/jwks.json
-    AUTH_EXPECTED_ISSUER: "https://dev.selfcare.pagopa.it"
-    AUTH_EXPECTED_AUDIENCE: "https://api-mcshared.dev.cstar.pagopa.it/auth-itn/realms/mdc"
+    SC_JWT_SET_URI: https://dev.selfcare.pagopa.it/.well-known/jwks.json
+    SC_AUTH_EXPECTED_ISSUER: "https://dev.selfcare.pagopa.it"
+    SC_AUTH_EXPECTED_AUDIENCE: "https://api-mcshared.dev.cstar.pagopa.it/auth-itn/realms/mdc"
 
     JAVA_TOOL_OPTIONS: >-
       -XX:InitialRAMPercentage=75.0

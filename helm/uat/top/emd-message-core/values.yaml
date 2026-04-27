@@ -17,8 +17,8 @@ microservice-chart:
 
   autoscaling:
     enable: true
-    minReplica: 2
-    maxReplica: 4
+    minReplica: 1
+    maxReplica: 2
     pollingInterval: 30 # seconds
     cooldownPeriod: 300 # seconds
     triggers:
@@ -27,9 +27,9 @@ microservice-chart:
           type: Utilization
           value: "60"
 
-  podDisruptionBudget:
-    create: true
-    maxUnavailable: 1
+#  podDisruptionBudget:
+#    create: true
+#    maxUnavailable: 1
 
   envConfig:
     MONGODB_DBNAME: mdc

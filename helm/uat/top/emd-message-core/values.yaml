@@ -7,6 +7,8 @@ microservice-chart:
   ingress:
     host: "mdc.itn.internal.uat.cstar.pagopa.it"
 
+
+
   resources:
     requests:
       memory: "768Mi"

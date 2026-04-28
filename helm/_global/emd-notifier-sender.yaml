@@ -11,6 +11,7 @@ microservice-chart:
     initialDelaySeconds: 120
     failureThreshold: 15
     periodSeconds: 10
+    terminationGracePeriodSeconds: 45
 
   readinessProbe:
     handlerType: httpGet

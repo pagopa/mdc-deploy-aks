@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: v1.4.1
+    tag: snapshot-MMC-525-webclient-stale-connections-pool-config
     pullPolicy: Always
 
   ingress:

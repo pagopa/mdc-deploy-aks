@@ -101,6 +101,8 @@ microservice-chart:
 
   envSecret:
     MONGODB_URI: mongodb-connection-string
+    REDIS_CONNECTION_HOSTNAME: emd-redis-primary-connection-hostname
+    REDIS_CONNECTION_PASSWORD: emd-redis-primary-access-key
     APPLICATIONINSIGHTS_CONNECTION_STRING: appinsights-instrumentation-key
 
   tmpVolumeMount:

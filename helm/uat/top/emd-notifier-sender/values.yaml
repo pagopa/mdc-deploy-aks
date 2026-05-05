@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-notifier-sender
-    tag: snapshot-MMC-525-webclient-stale-connections-pool-config
+    tag: v1.3.1
     pullPolicy: Always
 
   ingress:

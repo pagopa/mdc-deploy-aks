@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: snapshot-MMC-525-webclient-errors-rolling-update-impr
+    tag: v1.5.0
     pullPolicy: Always
 
   ingress:

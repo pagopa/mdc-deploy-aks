@@ -10,7 +10,7 @@ microservice-chart:
   envConfig:
     APPLICATIONINSIGHTS_ROLE_NAME: "emdarbackofficebff"
     APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "INFO"
-    CORS_ALLOWED_ORIGINS: "https://mdc.itn.internal.dev.cstar.pagopa.it"
+    CORS_ALLOWED_ORIGINS: "https://mdc.dev.cstar.pagopa.it"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"
     APPLICATIONINSIGHTS_PREVIEW_PROFILER_ENABLED: "false"
     JAVA_TOOL_OPTIONS: >-

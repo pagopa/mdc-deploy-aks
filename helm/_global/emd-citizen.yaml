@@ -3,23 +3,85 @@ microservice-chart:
   nameOverride: ""
   fullnameOverride: ""
 
+  # ─── Graceful Shutdown ────────────────────────────────────────────────────
+  # Formula: preStop(15s) + SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE(35s) + buffer(10s) = 60s
+  terminationGracePeriodSeconds: 60
+
+  # ─── Rolling Update Strategy ──────────────────────────────────────────────
+  # maxUnavailable: 0  → mai togliere un pod prima che il sostituto sia Ready (ZDD assoluto)
+  # maxSurge: 1        → con minReplica=2 crea al massimo 3 pod totali durante il rollout,
+  #                       parallelizzando l'avvio senza sprecare risorse
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+
+  # ─── PreStop Hook ─────────────────────────────────────────────────────────
+  # sleep 15s: da tempo all'Ingress controller (nginx/AGIC) di propagare la rimozione
+  # dell'endpoint prima che SIGTERM venga inviato all'applicazione.
+  # Durante questi 15s il pod è ancora running e processa normalmente il traffico.
+  lifecycle:
+    preStop:
+      create: true
+      command:
+        - sleep
+        - "15"
+
+  # ─── Startup Probe ────────────────────────────────────────────────────────
+  # Sostituisce l'initialDelaySeconds fisso di 120s della liveness.
+  # initialDelaySeconds: 10 → JVM + AppInsights agent hanno bisogno di ~5-10s per bind porta
+  # periodSeconds: 5        → polling frequente: il pod entra in rotazione entro 5s dall'avvio
+  # failureThreshold: 24    → finestra massima: 10 + (24 × 5) = 130s (copre Spring Boot +
+  #                           AppInsights + MongoDB pool + Kafka consumer group join)
+  # Risparmio tipico: avvio in ~40s → pronto in ~45s vs i vecchi 120s fissi
+  startupProbe:
+    create: true
+    handlerType: httpGet
+    httpGet:
+      path: /actuator/health/liveness
+      port: 8080
+    initialDelaySeconds: 10
+    failureThreshold: 24
+    periodSeconds: 5
+    successThreshold: 1
+    timeoutSeconds: 3
+    terminationGracePeriodSeconds: 60
+
+  # ─── Liveness Probe ───────────────────────────────────────────────────────
+  # initialDelaySeconds: 0  → la startupProbe gestisce lo startup, non serve delay aggiuntivo
+  # failureThreshold: 3     → vecchio valore 15 = 150s per rilevare pod zombie (28.500 req fallite
+  #                           a 190 req/s). Nuovo: 3 × 10s = 30s. Pod genuinamente morti vengono
+  #                           riavviati 5× più velocemente
+  # terminationGracePeriodSeconds: 30 → se liveness fallisce, il pod non è in graceful shutdown,
+  #                                      restart rapido è preferibile
   livenessProbe:
     handlerType: httpGet
     httpGet:
       path: /actuator/health/liveness
       port: 8080
-    initialDelaySeconds: 120
-    failureThreshold: 15
+    initialDelaySeconds: 0
+    failureThreshold: 3
     periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+    terminationGracePeriodSeconds: 30
 
+  # ─── Readiness Probe ──────────────────────────────────────────────────────
+  # initialDelaySeconds: 0  → la startupProbe garantisce che l'app sia up prima che parta la readiness
+  # periodSeconds: 5        → rileva problemi downstream (MongoDB lento, Kafka lag) entro 15s
+  #                           vs i vecchi 150s (15 × 10s)
+  # failureThreshold: 3     → rimuove il pod dalla rotazione dopo 15s di failures consecutive
   readinessProbe:
     handlerType: httpGet
     httpGet:
       path: /actuator/health/readiness
       port: 8080
-    initialDelaySeconds: 35
-    failureThreshold: 15
-    periodSeconds: 10
+    initialDelaySeconds: 0
+    failureThreshold: 3
+    periodSeconds: 5
+    successThreshold: 1
+    timeoutSeconds: 3
 
   deployment:
     create: true

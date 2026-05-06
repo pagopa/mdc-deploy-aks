@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-message-core
-    tag: v1.3.2
+    tag: v1.3.5
     pullPolicy: Always
 
   ingress:
@@ -9,8 +9,8 @@ microservice-chart:
 
   resources:
     requests:
-      memory: "768Mi"
-      cpu: "150m"
+      memory: "896Mi"
+      cpu: "200m"
     limits:
       memory: "1536Mi"
       cpu: "600m"
@@ -33,6 +33,8 @@ microservice-chart:
 
   envConfig:
     MONGODB_DBNAME: mdc
+    SERVER_SHUTDOWN: "graceful"
+    SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE: "35s"
     APPLICATIONINSIGHTS_ROLE_NAME: "emdmessagecore"
     APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "INFO"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"

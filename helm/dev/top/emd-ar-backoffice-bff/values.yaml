@@ -13,6 +13,8 @@ microservice-chart:
     CORS_ALLOWED_ORIGINS: "https://mdc.itn.internal.dev.cstar.pagopa.it"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"
     APPLICATIONINSIGHTS_PREVIEW_PROFILER_ENABLED: "false"
+    SERVER_SHUTDOWN: "graceful"
+    SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE: "35s"
     JAVA_TOOL_OPTIONS: >-
       -XX:InitialRAMPercentage=75.0
       -XX:MaxRAMPercentage=85.0
@@ -41,8 +43,9 @@ microservice-chart:
 
   resources:
     requests:
-      memory: "512Mi"
-      cpu: "100m"
+      # BFF: traffico più basso e no Kafka → profilo leggero ma comunque elevato rispetto ai minimi
+      memory: "640Mi"
+      cpu: "150m"
     limits:
       memory: "1024Mi"
       cpu: "400m"

@@ -3,23 +3,57 @@ microservice-chart:
   nameOverride: ""
   fullnameOverride: ""
 
+  # Formula: preStop(15s) + SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE(35s) + buffer(10s) = 60s
+  terminationGracePeriodSeconds: 60
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+
+  lifecycle:
+    preStop:
+      create: true
+      command:
+        - sleep
+        - "15"
+
+  startupProbe:
+    create: true
+    handlerType: httpGet
+    httpGet:
+      path: /actuator/health/liveness
+      port: 8080
+    initialDelaySeconds: 10
+    failureThreshold: 24
+    periodSeconds: 5
+    successThreshold: 1
+    timeoutSeconds: 3
+    terminationGracePeriodSeconds: 60
+
   livenessProbe:
     handlerType: httpGet
     httpGet:
       path: /actuator/health/liveness
       port: 8080
-    initialDelaySeconds: 120
-    failureThreshold: 15
+    initialDelaySeconds: 0
+    failureThreshold: 3
     periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+    terminationGracePeriodSeconds: 30
 
   readinessProbe:
     handlerType: httpGet
     httpGet:
       path: /actuator/health/readiness
       port: 8080
-    initialDelaySeconds: 35
-    failureThreshold: 15
-    periodSeconds: 10
+    initialDelaySeconds: 0
+    failureThreshold: 3
+    periodSeconds: 5
+    successThreshold: 1
+    timeoutSeconds: 3
 
   deployment:
     create: true

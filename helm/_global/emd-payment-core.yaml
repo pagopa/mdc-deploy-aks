@@ -89,6 +89,12 @@ microservice-chart:
     runAsUser: 10000
     runAsGroup: 10000
 
+  externalConfigMapFiles:
+    create: true
+    configMaps:
+      - name: appinsights-config
+        key: applicationinsights.json
+
   externalConfigMapValues:
     mdc-common:
       TZ: TZ

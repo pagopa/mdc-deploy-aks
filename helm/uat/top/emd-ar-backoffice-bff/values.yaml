@@ -21,4 +21,15 @@ microservice-chart:
   autoscaling:
     enable: true
     minReplica: 2
-    maxReplica: 3
+    maxReplica: 4
+    pollingInterval: 30 # seconds
+    cooldownPeriod: 300 # seconds
+    triggers:
+      - type: cpu
+        metadata:
+          type: Utilization
+          value: "60"
+
+  podDisruptionBudget:
+    create: true
+    maxUnavailable: 1

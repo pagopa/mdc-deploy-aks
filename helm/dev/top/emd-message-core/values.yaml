@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-message-core
-    tag: v1.3.3
+    tag: v1.3.5
     pullPolicy: Always
 
   ingress:
@@ -16,10 +16,21 @@ microservice-chart:
       cpu: "600m"
 
   autoscaling:
-    enable: false
+    enable: true
+    minReplica: 2
+    maxReplica: 3
+    pollingInterval: 30 # seconds
+    cooldownPeriod: 300 # seconds
+    triggers:
+      - type: cpu
+        metadata:
+          type: Utilization
+          value: "60"
 
   envConfig:
     MONGODB_DBNAME: mdc
+    SERVER_SHUTDOWN: "graceful"
+    SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE: "35s"
     APPLICATIONINSIGHTS_ROLE_NAME: "emdmessagecore"
     APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "INFO"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"

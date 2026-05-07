@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-citizen
-    tag: v1.0.6
+    tag: v1.1.2
     pullPolicy: Always
 
   ingress:
@@ -9,16 +9,20 @@ microservice-chart:
 
   resources:
     requests:
-      memory: "768Mi"
-      cpu: "150m"
+      # cpu 200m (era 150m): ratio burst 3:1 vs limit 600m → meno throttling quando i pod
+      # sopravvissuti assorbono il picco durante il rolling update (95 req/s cadauno a 190 req/s totali)
+      # memory 896Mi (era 768Mi): heap JVM ~1306Mi + AppInsights agent off-heap ~100Mi +
+      # Netty buffers + metaspace ≈ 400Mi overhead → 896Mi request segnala il working set reale
+      memory: "896Mi"
+      cpu: "200m"
     limits:
       memory: "1536Mi"
       cpu: "600m"
 
   autoscaling:
     enable: true
-    minReplica: 1
-    maxReplica: 2
+    minReplica: 2
+    maxReplica: 4
     pollingInterval: 30 # seconds
     cooldownPeriod: 300 # seconds
     triggers:
@@ -27,8 +31,16 @@ microservice-chart:
           type: Utilization
           value: "60"
 
+  podDisruptionBudget:
+    create: true
+    maxUnavailable: 1
+
   envConfig:
     MONGODB_DBNAME: mdc
+    SERVER_SHUTDOWN: "graceful"
+    # 35s = nginx/AGIC propagation lag (15s, coperto dal preStop) + max WebClient timeout (15s) + buffer (5s)
+    # Garantisce che Spring dreni tutte le richieste in volo prima di terminare
+    SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE: "35s"
     APPLICATIONINSIGHTS_ROLE_NAME: "emdcitizen"
     APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "INFO"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"

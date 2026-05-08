@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: snapshot-MMC-505-tpp-get-by-entity
+    tag: snapshot-MMC-550-handle-kc-user-fields
     pullPolicy: Always
 
   ingress:

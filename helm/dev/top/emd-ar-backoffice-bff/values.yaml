@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: v0.8.0
+    tag: snapshot-enable-traceid-auto-propagation
     pullPolicy: Always
 
   ingress:

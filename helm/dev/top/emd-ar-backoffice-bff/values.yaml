@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: snapshot-MMC-564-api-refactor
+    tag: snapshot-MMC-557-get-tpp-credentials
     pullPolicy: Always
 
   ingress:

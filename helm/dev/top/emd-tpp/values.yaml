@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: snapshot-MMC-487-fix-delete-endpoint
+    tag: snapshot-MMC-573-add-patch-tpp-endpoint
     pullPolicy: Always
 
   ingress:

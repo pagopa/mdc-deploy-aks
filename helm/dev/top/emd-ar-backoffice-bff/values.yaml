@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: snapshot-MMC-581-add-grant-type-to-ppa-credentials
+    tag: snapshot-MMC-571-get-tpp-details
     pullPolicy: Always
 
   ingress:

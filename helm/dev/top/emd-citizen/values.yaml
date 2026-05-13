@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-citizen
-    tag: v1.1.2
+    tag: snapshot-MMC-545-remove-fiscal-code-from-log
     pullPolicy: Always
 
   ingress:

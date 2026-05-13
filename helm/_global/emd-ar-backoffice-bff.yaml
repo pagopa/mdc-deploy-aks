@@ -100,6 +100,8 @@ microservice-chart:
   externalConfigMapValues:
     mdc-common:
       TZ: TZ
+    rest-client:
+      EMD_TPP: emd-tpp-baseurl
 
 
   envSecret:

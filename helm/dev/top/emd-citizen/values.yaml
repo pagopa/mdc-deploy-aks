@@ -16,16 +16,7 @@ microservice-chart:
       cpu: "600m"
 
   autoscaling:
-    enable: true
-    minReplica: 2
-    maxReplica: 3
-    pollingInterval: 30 # seconds
-    cooldownPeriod: 300 # seconds
-    triggers:
-      - type: cpu
-        metadata:
-          type: Utilization
-          value: "60"
+    enable: false
 
   envConfig:
     MONGODB_DBNAME: mdc

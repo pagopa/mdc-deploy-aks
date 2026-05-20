@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: snapshot-MMC-664-handle-legacy-clientId
+    tag: v1.6.1
     pullPolicy: Always
 
   ingress:

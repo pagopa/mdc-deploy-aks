@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: snapshot-MMC-664-handle-legacy-clientId
+    tag: v0.9.0
     pullPolicy: Always
 
   ingress:

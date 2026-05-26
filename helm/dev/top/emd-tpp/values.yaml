@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: snapshot-MMC-666-remove-az-key-expiration
+    tag: v1.6.2
     pullPolicy: Always
 
   ingress:

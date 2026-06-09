@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-payment-core
-    tag: snapshot-MMC-705-add-log-on-success-of-getRetrieval
+    tag: v1.5.1
     pullPolicy: Always
 
   ingress:

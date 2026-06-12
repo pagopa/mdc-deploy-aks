@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-payment-core
-    tag: v1.5.1
+    tag: v1.5.2
     pullPolicy: Always
 
   ingress:

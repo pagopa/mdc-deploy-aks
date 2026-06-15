@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-message-core
-    tag: snapshot-MMC-680-handling-errors-malformed-json-request-and-header-values
+    tag: snapshot-MMC-679-fix-validation-message-dto
     pullPolicy: Always
 
   ingress:

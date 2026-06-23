@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-payment-core
-    tag: snapshot-dependabot-maven-org.springframework.boot-spring-boot-starter-parent-4.1.0
+    tag: snapshot-renovate-io.netty-netty-handler-to-4.1.135.Final
     pullPolicy: Always
 
   ingress:

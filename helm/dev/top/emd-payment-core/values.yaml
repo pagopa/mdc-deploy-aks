@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-payment-core
-    tag: snapshot-dependabot-maven-org.springframework-spring-webflux-7.0.8
+    tag: snapshot-dependabot-maven-org.springframework.cloud-spring-cloud-dependencies-2025.1.1
     pullPolicy: Always
 
   ingress:

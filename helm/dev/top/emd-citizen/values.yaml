@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-citizen
-    tag: snapshot-dependabot-maven-org.springframework.boot-spring-boot-starter-parent-4.1.0
+    tag: snapshot
     pullPolicy: Always
 
   ingress:

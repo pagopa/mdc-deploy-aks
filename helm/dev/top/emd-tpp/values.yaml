@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: snapshot-dependabot-maven-org.springframework.cloud-spring-cloud-dependencies-2025.1.2
+    tag: snapshot-dependabot-maven-non-major-updates-637c8db700
     pullPolicy: Always
 
   ingress:

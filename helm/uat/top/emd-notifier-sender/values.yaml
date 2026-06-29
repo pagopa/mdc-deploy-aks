@@ -22,10 +22,20 @@ microservice-chart:
     pollingInterval: 30 # seconds
     cooldownPeriod: 300 # seconds
     triggers:
-      - type: cpu
+      - type: kafka
         metadata:
-          type: Utilization
-          value: "60"
+          bootstrapServers: "$(KAFKA_BROKER)"
+          consumerGroup: "$(KAFKA_MESSAGE_CORE_GROUP_IN)"
+          topic: "$(KAFKA_TOPIC_MESSAGE_CORE)"
+          lagThreshold: "10"
+          offsetResetPolicy: latest
+      - type: kafka
+        metadata:
+          bootstrapServers: "$(KAFKA_BROKER)"
+          consumerGroup: "$(KAFKA_NOTIFY_ERROR_GROUP_IN)"
+          topic: "$(KAFKA_TOPIC_NOTIFY_ERROR)"
+          lagThreshold: "10"
+          offsetResetPolicy: latest
 
   podDisruptionBudget:
     create: true

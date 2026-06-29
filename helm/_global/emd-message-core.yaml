@@ -104,11 +104,11 @@ microservice-chart:
     emd-eventhub:
       KAFKA_BROKER: kafka_broker
       KAFKA_ERRORS_BROKER: kafka_broker
-      KAFKA_TOPIC_MESSAGE_CORE: emd_courtesy_message_topic
+      KAFKA_TOPIC_MESSAGE_CORE: emd_courtesy_message_v2_topic
 
   envSecret:
     MONGODB_URI: mongodb-connection-string
-    KAFKA_MESSAGE_CORE_OUT_SASL_JAAS_CONFIG: evh-emd-courtesy-message-emd-courtesy-message-producer-jaas-config-emd
+    KAFKA_MESSAGE_CORE_OUT_SASL_JAAS_CONFIG: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-producer-jaas-config-emd
     APPLICATIONINSIGHTS_CONNECTION_STRING: appinsights-instrumentation-key
 
 

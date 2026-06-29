@@ -96,17 +96,19 @@ microservice-chart:
     emd-eventhub:
       KAFKA_BROKER: kafka_broker
       KAFKA_ERRORS_BROKER: kafka_broker
-      KAFKA_TOPIC_MESSAGE_CORE: emd_courtesy_message_topic
+      KAFKA_TOPIC_MESSAGE_CORE: emd_courtesy_message_v2_topic
       KAFKA_MESSAGE_CORE_GROUP_IN: emd-courtesy-message-consumer-group
-      KAFKA_TOPIC_NOTIFY_ERROR: emd_notify_error_topic
+      KAFKA_TOPIC_NOTIFY_ERROR: emd_notify_error_v2_topic
       KAFKA_NOTIFY_ERROR_GROUP_IN: emd-notify-error-consumer-group
+      KAFKA_TOPIC_NOTIFY_DLQ: emd_notify_dlq_topic
 
   envSecret:
     MONGODB_URI: mongodb-connection-string
-    KAFKA_MESSAGE_CORE_SASL_JAAS_CONFIG: evh-emd-courtesy-message-emd-courtesy-message-consumer-jaas-config-emd
-    KAFKA_MESSAGE_CORE_OUT_SASL_JAAS_CONFIG: evh-emd-courtesy-message-emd-courtesy-message-producer-jaas-config-emd
-    KAFKA_NOTIFY_ERROR_SASL_JAAS_CONFIG: evh-emd-notify-error-emd-notify-error-consumer-jaas-config-emd
-    KAFKA_NOTIFY_ERROR_OUT_SASL_JAAS_CONFIG: evh-emd-notify-error-emd-notify-error-producer-jaas-config-emd
+    KAFKA_MESSAGE_CORE_SASL_JAAS_CONFIG: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-consumer-jaas-config-emd
+    KAFKA_MESSAGE_CORE_OUT_SASL_JAAS_CONFIG: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-producer-jaas-config-emd
+    KAFKA_NOTIFY_ERROR_SASL_JAAS_CONFIG: evh-emd-notify-error-v2-emd-notify-error-v2-consumer-jaas-config-emd
+    KAFKA_NOTIFY_ERROR_OUT_SASL_JAAS_CONFIG: evh-emd-notify-error-v2-emd-notify-error-v2-producer-jaas-config-emd
+    KAFKA_NOTIFY_DLQ_OUT_SASL_JAAS_CONFIG: evh-emd-notify-dlq-emd-notify-dlq-producer-jaas-config-emd
     APPLICATIONINSIGHTS_CONNECTION_STRING: appinsights-instrumentation-key
 
   tmpVolumeMount:

@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-message-core
-    tag: snapshot-dependabot-maven-org.mock-server-mockserver-client-java-7.1.0
+    tag: v1.3.5
     pullPolicy: Always
 
   ingress:

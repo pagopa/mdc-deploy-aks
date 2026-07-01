@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-payment-core
-    tag: v1.5.4
+    tag: snapshot-dependabot-maven-org.springframework.security-spring-security-crypto-7.1.0
     pullPolicy: Always
 
   ingress:

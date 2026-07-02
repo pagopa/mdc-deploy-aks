@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: snapshot-dependabot-gradle-com.gorylenko.gradle-git-properties-4.0.1
+    tag: snapshot-dependabot-gradle-non-major-updates-43e98ea9aa
     pullPolicy: Always
 
   ingress:

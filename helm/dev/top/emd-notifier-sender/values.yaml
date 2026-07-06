@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-notifier-sender
-    tag: snapshot-dependabot-maven-non-major-updates-fd8824ab75
+    tag: snapshot-dependabot-maven-org.springframework.cloud-spring-cloud-dependencies-2025.1.2
     pullPolicy: Always
 
   ingress:

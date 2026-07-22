@@ -21,6 +21,8 @@ microservice-chart:
     KEYCLOAK_REALM: "mdc"
     KEYCLOAK_IDP_ALIAS: "selfcare-dev-jwt-grant"
 
+    KEYCLOAK_PORTAL_CLIENT_ID: "admin-portal-test"
+
     SC_JWT_SET_URI: https://dev.selfcare.pagopa.it/.well-known/jwks.json
     SC_AUTH_EXPECTED_ISSUER: "https://dev.selfcare.pagopa.it"
     SC_AUTH_EXPECTED_AUDIENCE: "https://api-mcshared.dev.cstar.pagopa.it/auth-itn/realms/mdc"

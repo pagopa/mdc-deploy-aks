@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: snapshot-MMC-807-admin-api
+    tag: v0.9.2
     pullPolicy: Always
 
   ingress:

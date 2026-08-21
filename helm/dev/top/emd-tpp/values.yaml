@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: v1.6.3
+    tag: snapshot-MMC-961-add-search-endpoint
     pullPolicy: Always
 
   ingress:

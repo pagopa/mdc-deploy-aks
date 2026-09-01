@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: snapshot-MMC-992-add-PSP-test-connection
+    tag: snapshot-MMC-988-manage-whitelist
     pullPolicy: Always
 
   ingress:

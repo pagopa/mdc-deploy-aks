@@ -30,8 +30,7 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_MESSAGE_CORE"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
-          sasl: "plaintext"
-          tls: "enable"
+          podIdentity: "azure-workload"
       - type: kafka
         metadata:
           bootstrapServersFromEnv: "KAFKA_BROKER"
@@ -39,8 +38,7 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_NOTIFY_ERROR"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
-          sasl: "plaintext"
-          tls: "enable"
+          podIdentity: "azure-workload"
 
   podDisruptionBudget:
     create: true

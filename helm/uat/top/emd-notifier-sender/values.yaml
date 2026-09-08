@@ -19,10 +19,11 @@ microservice-chart:
     enable: true
     minReplica: 2
     maxReplica: 4
-    pollingInterval: 30 # seconds
-    cooldownPeriod: 300 # seconds
+    pollingInterval: 30
+    cooldownPeriod: 300
     envSourceContainerName: "emd-notifier-sender-microservice-chart"
     triggers:
+      # Trigger 1: Topic MESSAGE_CORE
       - type: kafka
         metadata:
           bootstrapServersFromEnv: "KAFKA_BROKER"
@@ -30,7 +31,12 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_MESSAGE_CORE"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
-          podIdentity: "azure-workload"
+          sasl: "plaintext"
+          tls: "enable"
+          username: "$ConnectionString"
+          passwordFromEnv: "KAFKA_CONNECTION_STRING_MESSAGE_CORE_KEDA"
+
+      # Trigger 2: Topic NOTIFY_ERROR
       - type: kafka
         metadata:
           bootstrapServersFromEnv: "KAFKA_BROKER"
@@ -38,7 +44,10 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_NOTIFY_ERROR"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
-          podIdentity: "azure-workload"
+          sasl: "plaintext"
+          tls: "enable"
+          username: "$ConnectionString"
+          passwordFromEnv: "KAFKA_CONNECTION_STRING_NOTIFY_ERROR_KEDA"
 
   podDisruptionBudget:
     create: true

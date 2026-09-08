@@ -108,6 +108,8 @@ microservice-chart:
     KAFKA_NOTIFY_ERROR_SASL_JAAS_CONFIG: evh-emd-notify-error-v2-emd-notify-error-v2-consumer-jaas-config-emd
     KAFKA_NOTIFY_ERROR_OUT_SASL_JAAS_CONFIG: evh-emd-notify-error-v2-emd-notify-error-v2-producer-jaas-config-emd
     APPLICATIONINSIGHTS_CONNECTION_STRING: appinsights-instrumentation-key
+    KAFKA_CONNECTION_STRING_MESSAGE_CORE_KEDA: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-consumer-keda-conn-string
+    KAFKA_CONNECTION_STRING_NOTIFY_ERROR_KEDA: evh-emd-notify-error-v2-emd-notify-error-v2-consumer-keda-conn-string
 
   tmpVolumeMount:
     create: true

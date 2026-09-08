@@ -23,7 +23,6 @@ microservice-chart:
     cooldownPeriod: 300
     envSourceContainerName: "emd-notifier-sender-microservice-chart"
     triggers:
-      # Trigger 1: Topic MESSAGE_CORE
       - type: kafka
         metadata:
           bootstrapServersFromEnv: "KAFKA_BROKER"
@@ -33,10 +32,9 @@ microservice-chart:
           offsetResetPolicy: "latest"
           sasl: "plaintext"
           tls: "enable"
-          username: "$ConnectionString"
+          usernameFromEnv: "KAFKA_USERNAME"
           passwordFromEnv: "KAFKA_CONNECTION_STRING_MESSAGE_CORE_KEDA"
 
-      # Trigger 2: Topic NOTIFY_ERROR
       - type: kafka
         metadata:
           bootstrapServersFromEnv: "KAFKA_BROKER"
@@ -46,7 +44,7 @@ microservice-chart:
           offsetResetPolicy: "latest"
           sasl: "plaintext"
           tls: "enable"
-          username: "$ConnectionString"
+          usernameFromEnv: "KAFKA_USERNAME"
           passwordFromEnv: "KAFKA_CONNECTION_STRING_NOTIFY_ERROR_KEDA"
 
   podDisruptionBudget:
@@ -62,6 +60,7 @@ microservice-chart:
     SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE: "60s"
     BENEFICIARY_RULE_BUILD_DELAY_DURATION: "150"
     KAFKA_COMMANDS_MAX_POLL_SIZE: "10"
+    KAFKA_USERNAME: "$ConnectionString"
     KAFKA_CONSUMER_CONCURRENCY: "3" # tarata per uat 1.000RU
     LOGGING_LEVEL_IT_GOV_PAGOPA_NOTIFIER: "DEBUG"
     APPLICATIONINSIGHTS_ROLE_NAME: "emdnotifiersender"

@@ -21,7 +21,7 @@ microservice-chart:
     maxReplica: 4
     pollingInterval: 30 # seconds
     cooldownPeriod: 300 # seconds
-    envSourceContainerName: "emd-notifier-sender"
+    envSourceContainerName: "emd-notifier-sender-microservice-chart"
     triggers:
       - type: kafka
         metadata:
@@ -30,6 +30,8 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_MESSAGE_CORE"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
+          sasl: "plain"
+          tls: "enable"
       - type: kafka
         metadata:
           bootstrapServersFromEnv: "KAFKA_BROKER"
@@ -37,6 +39,8 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_NOTIFY_ERROR"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
+          sasl: "plain"
+          tls: "enable"
 
   podDisruptionBudget:
     create: true

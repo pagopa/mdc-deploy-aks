@@ -30,7 +30,7 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_MESSAGE_CORE"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
-          sasl: "plain"
+          sasl: "plaintext"
           tls: "enable"
       - type: kafka
         metadata:
@@ -39,7 +39,7 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_NOTIFY_ERROR"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
-          sasl: "plain"
+          sasl: "plaintext"
           tls: "enable"
 
   podDisruptionBudget:

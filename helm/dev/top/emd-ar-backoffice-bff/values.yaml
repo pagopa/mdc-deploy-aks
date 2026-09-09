@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: v0.10.1
+    tag: snapshot-MMC-1018-add-search-messages-api
     pullPolicy: Always
 
   ingress:

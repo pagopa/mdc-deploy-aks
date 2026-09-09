@@ -102,6 +102,7 @@ microservice-chart:
       TZ: TZ
     rest-client:
       EMD_TPP: emd-tpp-baseurl
+      EMD-MESSAGE-CORE: emd-message-core-baseurl
 
 
   envSecret:

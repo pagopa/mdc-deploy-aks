@@ -24,11 +24,17 @@ microservice-chart:
     envSourceContainerName: "emd-notifier-sender-microservice-chart"
     triggerAuthentications:
       - name: keda-evh-auth-message-core
+        env:
+          - parameter: username
+            value: "$ConnectionString"
         secretTargetRef:
           - parameter: password
             name: emd-notifier-sender-microservice-chart
             key: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-consumer-keda-conn-string
       - name: keda-evh-auth-notify-error
+        env:
+          - parameter: username
+            value: "$ConnectionString"
         secretTargetRef:
           - parameter: password
             name: emd-notifier-sender-microservice-chart

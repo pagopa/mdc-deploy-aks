@@ -27,12 +27,12 @@ microservice-chart:
         secretTargetRef:
           - parameter: password
             name: emd-notifier-sender-microservice-chart
-            key: KAFKA_CONNECTION_STRING_MESSAGE_CORE_KEDA
+            key: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-consumer-keda-conn-string
       - name: keda-evh-auth-notify-error
         secretTargetRef:
           - parameter: password
             name: emd-notifier-sender-microservice-chart
-            key: KAFKA_CONNECTION_STRING_NOTIFY_ERROR_KEDA
+            key: evh-emd-notify-error-v2-emd-notify-error-v2-consumer-keda-conn-string
     triggers:
       - type: kafka
         metadata:

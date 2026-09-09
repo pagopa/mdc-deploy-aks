@@ -19,23 +19,49 @@ microservice-chart:
     enable: true
     minReplica: 2
     maxReplica: 4
-    pollingInterval: 30 # seconds
-    cooldownPeriod: 300 # seconds
+    pollingInterval: 30
+    cooldownPeriod: 300
+    envSourceContainerName: "emd-notifier-sender-microservice-chart"
+    triggerAuthentications:
+      - name: keda-evh-auth-message-core
+        secretTargetRef:
+          - parameter: username
+            name: emd-notifier-sender-microservice-chart
+            key: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-consumer-keda-conn-username
+          - parameter: password
+            name: emd-notifier-sender-microservice-chart
+            key: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-consumer-keda-conn-string
+      - name: keda-evh-auth-notify-error
+        secretTargetRef:
+          - parameter: username
+            name: emd-notifier-sender-microservice-chart
+            key: evh-emd-notify-error-v2-emd-notify-error-v2-consumer-keda-conn-username
+          - parameter: password
+            name: emd-notifier-sender-microservice-chart
+            key: evh-emd-notify-error-v2-emd-notify-error-v2-consumer-keda-conn-string
     triggers:
       - type: kafka
         metadata:
-          bootstrapServers: "$(KAFKA_BROKER)"
-          consumerGroup: "$(KAFKA_MESSAGE_CORE_GROUP_IN)"
-          topic: "$(KAFKA_TOPIC_MESSAGE_CORE)"
+          bootstrapServersFromEnv: "KAFKA_BROKER"
+          consumerGroupFromEnv: "KAFKA_MESSAGE_CORE_GROUP_IN"
+          topicFromEnv: "KAFKA_TOPIC_MESSAGE_CORE"
           lagThreshold: "10"
-          offsetResetPolicy: latest
+          offsetResetPolicy: "latest"
+          sasl: "plaintext"
+          tls: "enable"
+        authenticationRef:
+          name: keda-evh-auth-message-core
       - type: kafka
         metadata:
-          bootstrapServers: "$(KAFKA_BROKER)"
-          consumerGroup: "$(KAFKA_NOTIFY_ERROR_GROUP_IN)"
-          topic: "$(KAFKA_TOPIC_NOTIFY_ERROR)"
+          bootstrapServersFromEnv: "KAFKA_BROKER"
+          consumerGroupFromEnv: "KAFKA_NOTIFY_ERROR_GROUP_IN"
+          topicFromEnv: "KAFKA_TOPIC_NOTIFY_ERROR"
           lagThreshold: "10"
-          offsetResetPolicy: latest
+          offsetResetPolicy: "latest"
+          sasl: "plaintext"
+          tls: "enable"
+        authenticationRef:
+          name: keda-evh-auth-notify-error
 
   podDisruptionBudget:
     create: true

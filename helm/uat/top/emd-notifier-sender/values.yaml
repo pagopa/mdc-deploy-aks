@@ -23,17 +23,16 @@ microservice-chart:
     cooldownPeriod: 300
     envSourceContainerName: "emd-notifier-sender-microservice-chart"
     triggerAuthentications:
-      - name: keda-evh-auth-sender
+      - name: keda-evh-auth-message-core
         secretTargetRef:
-          - parameter: sasl
-            name: emd-notifier-sender-microservice-chart
-            key: KAFKA_SASL_TYPE
-          - parameter: username
-            name: emd-notifier-sender-microservice-chart
-            key: KAFKA_USERNAME
           - parameter: password
             name: emd-notifier-sender-microservice-chart
             key: KAFKA_CONNECTION_STRING_MESSAGE_CORE_KEDA
+      - name: keda-evh-auth-notify-error
+        secretTargetRef:
+          - parameter: password
+            name: emd-notifier-sender-microservice-chart
+            key: KAFKA_CONNECTION_STRING_NOTIFY_ERROR_KEDA
     triggers:
       - type: kafka
         metadata:
@@ -42,8 +41,11 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_MESSAGE_CORE"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
+          sasl: "plaintext"
+          tls: "enable"
+          username: "$ConnectionString"
         authenticationRef:
-          name: "keda-evh-auth-sender"
+          name: keda-evh-auth-message-core
       - type: kafka
         metadata:
           bootstrapServersFromEnv: "KAFKA_BROKER"
@@ -51,8 +53,11 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_NOTIFY_ERROR"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
+          sasl: "plaintext"
+          tls: "enable"
+          username: "$ConnectionString"
         authenticationRef:
-          name: "keda-evh-auth-sender"
+          name: keda-evh-auth-notify-error
 
   podDisruptionBudget:
     create: true
@@ -67,7 +72,6 @@ microservice-chart:
     SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE: "60s"
     BENEFICIARY_RULE_BUILD_DELAY_DURATION: "150"
     KAFKA_COMMANDS_MAX_POLL_SIZE: "10"
-    KAFKA_USERNAME: "$ConnectionString"
     KAFKA_CONSUMER_CONCURRENCY: "3" # tarata per uat 1.000RU
     LOGGING_LEVEL_IT_GOV_PAGOPA_NOTIFIER: "DEBUG"
     APPLICATIONINSIGHTS_ROLE_NAME: "emdnotifiersender"

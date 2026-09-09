@@ -22,6 +22,18 @@ microservice-chart:
     pollingInterval: 30
     cooldownPeriod: 300
     envSourceContainerName: "emd-notifier-sender-microservice-chart"
+    triggerAuthentications:
+      - name: keda-evh-auth-sender
+        secretTargetRef:
+          - parameter: sasl
+            name: emd-notifier-sender-microservice-chart
+            key: KAFKA_SASL_TYPE
+          - parameter: username
+            name: emd-notifier-sender-microservice-chart
+            key: KAFKA_USERNAME
+          - parameter: password
+            name: emd-notifier-sender-microservice-chart
+            key: KAFKA_CONNECTION_STRING_MESSAGE_CORE_KEDA
     triggers:
       - type: kafka
         metadata:
@@ -30,11 +42,8 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_MESSAGE_CORE"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
-          sasl: "plaintext"
-          tls: "enable"
-          usernameFromEnv: "KAFKA_USERNAME"
-          passwordFromEnv: "KAFKA_CONNECTION_STRING_MESSAGE_CORE_KEDA"
-
+        authenticationRef:
+          name: "keda-evh-auth-sender"
       - type: kafka
         metadata:
           bootstrapServersFromEnv: "KAFKA_BROKER"
@@ -42,10 +51,8 @@ microservice-chart:
           topicFromEnv: "KAFKA_TOPIC_NOTIFY_ERROR"
           lagThreshold: "10"
           offsetResetPolicy: "latest"
-          sasl: "plaintext"
-          tls: "enable"
-          usernameFromEnv: "KAFKA_USERNAME"
-          passwordFromEnv: "KAFKA_CONNECTION_STRING_NOTIFY_ERROR_KEDA"
+        authenticationRef:
+          name: "keda-evh-auth-sender"
 
   podDisruptionBudget:
     create: true

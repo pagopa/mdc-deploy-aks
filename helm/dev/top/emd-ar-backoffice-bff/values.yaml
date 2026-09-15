@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: snapshot-MMC-1022-add-delete-message-api
+    tag: v0.11.0
     pullPolicy: Always
 
   ingress:

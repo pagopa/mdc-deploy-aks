@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-message-core
-    tag: v1.6.0
+    tag: snapshot-MMC-1069-add-Mongo-exception
     pullPolicy: Always
 
   ingress:

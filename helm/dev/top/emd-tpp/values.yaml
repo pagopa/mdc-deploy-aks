@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: v1.8.0
+    tag: snapshot-MMC-1074-add-cache-to-getTppByEntityId
     pullPolicy: Always
 
   ingress:

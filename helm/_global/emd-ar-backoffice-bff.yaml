@@ -102,7 +102,7 @@ microservice-chart:
       TZ: TZ
     rest-client:
       EMD_TPP: emd-tpp-baseurl
-
+      EMD_MESSAGE_CORE: emd-message-core-baseurl
 
   envSecret:
     MONGODB_URI: mongodb-connection-string

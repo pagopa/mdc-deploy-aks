@@ -104,7 +104,7 @@ microservice-chart:
     emd-eventhub:
       KAFKA_BROKER: kafka_broker
       KAFKA_ERRORS_BROKER: kafka_broker
-      KAFKA_TOPIC_MESSAGE_CORE: emd-notification-failed-topic
+      KAFKA_TOPIC_MESSAGE_CORE: emd-courtesy-message-requested-topic
 
   envSecret:
     MONGODB_URI: mongodb-connection-string

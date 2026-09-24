@@ -96,9 +96,9 @@ microservice-chart:
     emd-eventhub:
       KAFKA_BROKER: kafka_broker
       KAFKA_ERRORS_BROKER: kafka_broker
-      KAFKA_TOPIC_MESSAGE_CORE: emd-notification-failed-topic
+      KAFKA_TOPIC_MESSAGE_CORE: emd-courtesy-message-requested-topic
       KAFKA_MESSAGE_CORE_GROUP_IN: emd-courtesy-message-requested-consumer-group
-      KAFKA_TOPIC_NOTIFY_ERROR: emd-courtesy-message-requested-topic
+      KAFKA_TOPIC_NOTIFY_ERROR: emd-notification-failed-topic
       KAFKA_NOTIFY_ERROR_GROUP_IN: emd-notification-failed-consumer-group
 
   envSecret:

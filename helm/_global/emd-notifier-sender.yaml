@@ -96,25 +96,25 @@ microservice-chart:
     emd-eventhub:
       KAFKA_BROKER: kafka_broker
       KAFKA_ERRORS_BROKER: kafka_broker
-      KAFKA_TOPIC_MESSAGE_CORE: emd_courtesy_message_v2_topic
-      KAFKA_MESSAGE_CORE_GROUP_IN: emd-courtesy-message-v2-consumer-group
-      KAFKA_TOPIC_NOTIFY_ERROR: emd_notify_error_v2_topic
-      KAFKA_NOTIFY_ERROR_GROUP_IN: emd-notify-error-v2-consumer-group
+      KAFKA_TOPIC_MESSAGE_CORE: emd-notification-failed-topic
+      KAFKA_MESSAGE_CORE_GROUP_IN: emd-courtesy-message-requested-consumer-group
+      KAFKA_TOPIC_NOTIFY_ERROR: emd-courtesy-message-requested-topic
+      KAFKA_NOTIFY_ERROR_GROUP_IN: emd-notification-failed-consumer-group
 
   envSecret:
     MONGODB_URI: mongodb-connection-string
-    KAFKA_MESSAGE_CORE_SASL_JAAS_CONFIG: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-consumer-jaas-config-emd
-    KAFKA_MESSAGE_CORE_OUT_SASL_JAAS_CONFIG: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-producer-jaas-config-emd
-    KAFKA_NOTIFY_ERROR_SASL_JAAS_CONFIG: evh-emd-notify-error-v2-emd-notify-error-v2-consumer-jaas-config-emd
-    KAFKA_NOTIFY_ERROR_OUT_SASL_JAAS_CONFIG: evh-emd-notify-error-v2-emd-notify-error-v2-producer-jaas-config-emd
+    KAFKA_MESSAGE_CORE_SASL_JAAS_CONFIG: evh-emd-courtesy-message-requested-emd-courtesy-message-requested-consumer-jaas-config-emd
+    KAFKA_MESSAGE_CORE_OUT_SASL_JAAS_CONFIG: evh-emd-courtesy-message-requested-emd-courtesy-message-requested-producer-jaas-config-emd
+    KAFKA_NOTIFY_ERROR_SASL_JAAS_CONFIG: evh-emd-notification-failed-emd-notification-failed-consumer-jaas-config-emd
+    KAFKA_NOTIFY_ERROR_OUT_SASL_JAAS_CONFIG: evh-emd-notification-failed-emd-notification-failed-producer-jaas-config-emd
     APPLICATIONINSIGHTS_CONNECTION_STRING: appinsights-instrumentation-key
     # Connection String KEDA
-    KAFKA_CONNECTION_STRING_MESSAGE_CORE_KEDA: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-consumer-keda-conn-string
-    KAFKA_CONNECTION_STRING_NOTIFY_ERROR_KEDA: evh-emd-notify-error-v2-emd-notify-error-v2-consumer-keda-conn-string
+    KAFKA_CONNECTION_STRING_MESSAGE_CORE_KEDA: evh-emd-courtesy-message-requested-emd-courtesy-message-requested-consumer-keda-conn-string
+    KAFKA_CONNECTION_STRING_NOTIFY_ERROR_KEDA: evh-emd-notification-failed-emd-notification-failed-consumer-keda-conn-string
 
     # Username KEDA creati su SOPS / Key Vault:
-    KAFKA_USERNAME_MESSAGE_CORE_KEDA: evh-emd-courtesy-message-v2-emd-courtesy-message-v2-consumer-keda-conn-username
-    KAFKA_USERNAME_NOTIFY_ERROR_KEDA: evh-emd-notify-error-v2-emd-notify-error-v2-consumer-keda-conn-username
+    KAFKA_USERNAME_MESSAGE_CORE_KEDA: evh-emd-courtesy-message-requested-emd-courtesy-message-requested-consumer-keda-conn-username
+    KAFKA_USERNAME_NOTIFY_ERROR_KEDA: evh-emd-notification-failed-emd-notification-failed-consumer-keda-conn-username
 
   tmpVolumeMount:
     create: true

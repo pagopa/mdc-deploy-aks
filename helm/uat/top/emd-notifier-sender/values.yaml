@@ -10,16 +10,16 @@ microservice-chart:
   resources:
     requests:
       memory: "896Mi"
-      cpu: "200m"
+      cpu: "500m"
     limits:
       memory: "1536Mi"
-      cpu: "600m"
+      cpu: "2000m"
 
   autoscaling:
     enable: true
     minReplica: 2
-    maxReplica: 4
-    pollingInterval: 30
+    maxReplica: 6
+    pollingInterval: 10
     cooldownPeriod: 300
     envSourceContainerName: "emd-notifier-sender-microservice-chart"
     triggerAuthentications:
@@ -77,19 +77,17 @@ microservice-chart:
     BENEFICIARY_RULE_BUILD_DELAY_DURATION: "150"
     KAFKA_COMMANDS_MAX_POLL_SIZE: "10"
     KAFKA_CONSUMER_CONCURRENCY: "3" # tarata per uat 1.000RU
-    LOGGING_LEVEL_IT_GOV_PAGOPA_NOTIFIER: "DEBUG"
+    LOGGING_LEVEL_IT_GOV_PAGOPA_NOTIFIER: "INFO" # Portato a INFO (DEBUG generava un bottleneck I/O importante)
     APPLICATIONINSIGHTS_ROLE_NAME: "emdnotifiersender"
     APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "INFO"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"
     APPLICATIONINSIGHTS_PREVIEW_PROFILER_ENABLED: "false"
     JAVA_TOOL_OPTIONS: >-
-      -XX:InitialRAMPercentage=75.0
-      -XX:MaxRAMPercentage=85.0
+      -XX:InitialRAMPercentage=50.0
+      -XX:MaxRAMPercentage=70.0
       -XX:+UseG1GC
       -XX:+UseContainerSupport
       -Djava.security.egd=file:/dev/./urandom
-      -Djava.util.concurrent.ForkJoinPool.common.parallelism=7
-      -Dio.netty.eventLoopThreads=100
       -javaagent:/app/applicationinsights-agent.jar
       -Dapplicationinsights.configuration.file=/mnt/file-config-external/appinsights-config/applicationinsights.json
 

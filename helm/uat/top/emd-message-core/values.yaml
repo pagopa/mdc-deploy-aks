@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-message-core
-    tag: v1.6.1
+    tag: snapshot-MMC-1073-optimization-search-query
     pullPolicy: Always
 
   ingress:

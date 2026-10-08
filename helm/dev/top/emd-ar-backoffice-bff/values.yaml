@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: snapshot-MMC-1180-put-citizen-consent-api
+    tag: snapshot-MMC-1183-delete-citizen-consent-api
     pullPolicy: Always
 
   ingress:

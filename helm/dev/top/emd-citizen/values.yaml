@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-citizen
-    tag: snapshot-MMC-1155-citizen-search-api
+    tag: snapshot-MMC-1176-get-citizen-details
     pullPolicy: Always
 
   ingress:

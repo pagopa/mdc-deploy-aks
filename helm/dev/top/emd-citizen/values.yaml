@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-citizen
-    tag: snapshot-MMC-1183-delete-citizen-consent-api
+    tag: v1.3.0
     pullPolicy: Always
 
   ingress:

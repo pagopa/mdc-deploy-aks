@@ -103,6 +103,7 @@ microservice-chart:
     rest-client:
       EMD_TPP: emd-tpp-baseurl
       EMD_MESSAGE_CORE: emd-message-core-baseurl
+      EMD_CITIZEN: emd-citizen-baseurl
 
 
   envSecret:

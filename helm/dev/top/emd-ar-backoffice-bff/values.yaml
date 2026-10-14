@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: snapshot-MMC-1197-add-get-payattempt-endpoint
+    tag: snapshot-MMC-1191-batch-tpp-get-endpoint
     pullPolicy: Always
 
   ingress:

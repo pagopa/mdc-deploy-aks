@@ -103,6 +103,8 @@ microservice-chart:
     rest-client:
       EMD_TPP: emd-tpp-baseurl
       EMD_MESSAGE_CORE: emd-message-core-baseurl
+      EMD_CITIZEN: emd-citizen-baseurl
+      EMD_PAYMENT_CORE: emd-payment-core-baseurl
 
 
   envSecret:

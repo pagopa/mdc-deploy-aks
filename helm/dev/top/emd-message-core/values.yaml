@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-message-core
-    tag: v1.6.1
+    tag: snapshot-MMC-1216-add-state-parameter
     pullPolicy: Always
 
   ingress:

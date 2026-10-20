@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-message-core
-    tag: v1.6.2@sha256:81b910c3c29e1864be40d16738d973d5d419a7f51b10fbd421033e4e4fe979fc
+    tag: v1.6.2
     pullPolicy: Always
 
   ingress:
@@ -23,8 +23,8 @@ microservice-chart:
     cooldownPeriod: 300 # seconds
     triggers:
       - type: cpu
+        metricType: Utilization
         metadata:
-          type: Utilization
           value: "60"
 
   podDisruptionBudget:

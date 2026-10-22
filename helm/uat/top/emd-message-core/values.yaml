@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-message-core
-    tag: v1.6.2
+    tag: v1.7.0@sha256:71752d8c8f7afb9afd4ea80391ac57d6bc949285e3950a378179aef3281640a5
     pullPolicy: Always
 
   ingress:

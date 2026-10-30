@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: v0.13.0
+    tag: snapshot-MMC-1251-add-user-endpoint
     pullPolicy: Always
 
   ingress:
@@ -20,6 +20,7 @@ microservice-chart:
 
     KEYCLOAK_REALM: "mdc"
     KEYCLOAK_IDP_ALIAS: "selfcare-dev-jwt-grant"
+    KEYCLOAK_IDP_ALIAS_MDC: "azure-entra"
 
     SC_JWT_SET_URI: https://dev.selfcare.pagopa.it/.well-known/jwks.json
     SC_AUTH_EXPECTED_ISSUER: "https://dev.selfcare.pagopa.it"

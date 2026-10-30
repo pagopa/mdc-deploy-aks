@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: v1.9.0
+    tag: snapshot-MMC-1313-remove-fields
     pullPolicy: Always
 
   ingress:

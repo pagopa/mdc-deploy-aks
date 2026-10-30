@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: v0.13.0
+    tag: snapshot-MMC-1292-add-roles-endpoint
     pullPolicy: Always
 
   ingress:

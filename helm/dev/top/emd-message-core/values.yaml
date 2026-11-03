@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-message-core
-    tag: snapshot-MMC-776-kafka-scaling
+    tag: v1.6.2
     pullPolicy: Always
 
   ingress:

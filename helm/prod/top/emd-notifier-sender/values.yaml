@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-notifier-sender
-    tag: v1.3.2
+    tag: v1.4.0
     pullPolicy: Always
 
   ingress:
@@ -9,18 +9,18 @@ microservice-chart:
 
   resources:
     requests:
-      memory: "896Mi"
-      cpu: "200m"
+      memory: "512Mi"
+      cpu: "250m"
     limits:
       memory: "1536Mi"
-      cpu: "600m"
+      cpu: "2000m"
 
   autoscaling:
     enable: true
     minReplica: 2
-    maxReplica: 4
-    pollingInterval: 30
-    cooldownPeriod: 300
+    maxReplica: 10
+    pollingInterval: 10
+    cooldownPeriod: 60
     envSourceContainerName: "emd-notifier-sender-microservice-chart"
     triggerAuthentications:
       - name: keda-evh-auth-message-core
@@ -45,7 +45,8 @@ microservice-chart:
           bootstrapServersFromEnv: "KAFKA_BROKER"
           consumerGroupFromEnv: "KAFKA_MESSAGE_CORE_GROUP_IN"
           topicFromEnv: "KAFKA_TOPIC_MESSAGE_CORE"
-          lagThreshold: "10"
+          lagThreshold: "30"
+          activationLagThreshold: "5"
           offsetResetPolicy: "latest"
           sasl: "plaintext"
           tls: "enable"
@@ -56,7 +57,8 @@ microservice-chart:
           bootstrapServersFromEnv: "KAFKA_BROKER"
           consumerGroupFromEnv: "KAFKA_NOTIFY_ERROR_GROUP_IN"
           topicFromEnv: "KAFKA_TOPIC_NOTIFY_ERROR"
-          lagThreshold: "10"
+          lagThreshold: "30"
+          activationLagThreshold: "5"
           offsetResetPolicy: "latest"
           sasl: "plaintext"
           tls: "enable"
@@ -73,22 +75,17 @@ microservice-chart:
     SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE: "60s"
     BENEFICIARY_RULE_BUILD_DELAY_DURATION: "150"
     KAFKA_COMMANDS_MAX_POLL_SIZE: "10"
-    # Quanti messaggi per pod possono essere elaborati in parallelo.
-    # Deve essere <= KAFKA_COMMANDS_MAX_POLL_SIZE per evitare di saturare MongoDB.
-    # Con 4 pod: 4 * 10 = 40 scritture MongoDB simultanee al massimo.
-    KAFKA_CONSUMER_CONCURRENCY: "10"
+    KAFKA_CONSUMER_CONCURRENCY: "3"
     APPLICATIONINSIGHTS_ROLE_NAME: "emdnotifiersender"
     APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "INFO"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"
     APPLICATIONINSIGHTS_PREVIEW_PROFILER_ENABLED: "false"
     JAVA_TOOL_OPTIONS: >-
-      -XX:InitialRAMPercentage=75.0
-      -XX:MaxRAMPercentage=85.0
+      -XX:InitialRAMPercentage=50.0
+      -XX:MaxRAMPercentage=70.0
       -XX:+UseG1GC
       -XX:+UseContainerSupport
       -Djava.security.egd=file:/dev/./urandom
-      -Djava.util.concurrent.ForkJoinPool.common.parallelism=7
-      -Dio.netty.eventLoopThreads=100
       -javaagent:/app/applicationinsights-agent.jar
       -Dapplicationinsights.configuration.file=/mnt/file-config-external/appinsights-config/applicationinsights.json
 

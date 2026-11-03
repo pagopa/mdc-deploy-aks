@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-notifier-sender
-    tag: v1.3.4
+    tag: v1.4.0
     pullPolicy: Always
 
   ingress:
@@ -9,23 +9,61 @@ microservice-chart:
 
   resources:
     requests:
-      memory: "896Mi"
-      cpu: "200m"
+      memory: "512Mi"
+      cpu: "250m"
     limits:
       memory: "1536Mi"
-      cpu: "600m"
+      cpu: "2000m"
 
   autoscaling:
     enable: true
     minReplica: 2
-    maxReplica: 4
-    pollingInterval: 30 # seconds
-    cooldownPeriod: 300 # seconds
+    maxReplica: 10
+    pollingInterval: 10
+    cooldownPeriod: 60
+    envSourceContainerName: "emd-notifier-sender-microservice-chart"
+    triggerAuthentications:
+      - name: keda-evh-auth-message-core
+        secretTargetRef:
+          - parameter: username
+            name: emd-notifier-sender-microservice-chart
+            key: evh-emd-courtesy-message-requested-emd-courtesy-message-requested-consumer-keda-conn-username
+          - parameter: password
+            name: emd-notifier-sender-microservice-chart
+            key: evh-emd-courtesy-message-requested-emd-courtesy-message-requested-consumer-keda-conn-string
+      - name: keda-evh-auth-notify-error
+        secretTargetRef:
+          - parameter: username
+            name: emd-notifier-sender-microservice-chart
+            key: evh-emd-notification-failed-emd-notification-failed-consumer-keda-conn-username
+          - parameter: password
+            name: emd-notifier-sender-microservice-chart
+            key: evh-emd-notification-failed-emd-notification-failed-consumer-keda-conn-string
     triggers:
-      - type: cpu
-        metricType: Utilization
+      - type: kafka
         metadata:
-          value: "60"
+          bootstrapServersFromEnv: "KAFKA_BROKER"
+          consumerGroupFromEnv: "KAFKA_MESSAGE_CORE_GROUP_IN"
+          topicFromEnv: "KAFKA_TOPIC_MESSAGE_CORE"
+          lagThreshold: "30"
+          activationLagThreshold: "5"
+          offsetResetPolicy: "latest"
+          sasl: "plaintext"
+          tls: "enable"
+        authenticationRef:
+          name: keda-evh-auth-message-core
+      - type: kafka
+        metadata:
+          bootstrapServersFromEnv: "KAFKA_BROKER"
+          consumerGroupFromEnv: "KAFKA_NOTIFY_ERROR_GROUP_IN"
+          topicFromEnv: "KAFKA_TOPIC_NOTIFY_ERROR"
+          lagThreshold: "30"
+          activationLagThreshold: "5"
+          offsetResetPolicy: "latest"
+          sasl: "plaintext"
+          tls: "enable"
+        authenticationRef:
+          name: keda-evh-auth-notify-error
 
   podDisruptionBudget:
     create: true
@@ -37,18 +75,17 @@ microservice-chart:
     SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE: "60s"
     BENEFICIARY_RULE_BUILD_DELAY_DURATION: "150"
     KAFKA_COMMANDS_MAX_POLL_SIZE: "10"
+    KAFKA_CONSUMER_CONCURRENCY: "3"
     APPLICATIONINSIGHTS_ROLE_NAME: "emdnotifiersender"
     APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "INFO"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"
     APPLICATIONINSIGHTS_PREVIEW_PROFILER_ENABLED: "false"
     JAVA_TOOL_OPTIONS: >-
-      -XX:InitialRAMPercentage=75.0
-      -XX:MaxRAMPercentage=85.0
+      -XX:InitialRAMPercentage=50.0
+      -XX:MaxRAMPercentage=70.0
       -XX:+UseG1GC
       -XX:+UseContainerSupport
       -Djava.security.egd=file:/dev/./urandom
-      -Djava.util.concurrent.ForkJoinPool.common.parallelism=7
-      -Dio.netty.eventLoopThreads=100
       -javaagent:/app/applicationinsights-agent.jar
       -Dapplicationinsights.configuration.file=/mnt/file-config-external/appinsights-config/applicationinsights.json
 

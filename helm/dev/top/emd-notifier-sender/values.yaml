@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-notifier-sender
-    tag: v1.3.4
+    tag: snapshot-MMC-1361-message-send-retry-endpoint-add
     pullPolicy: Always
 
   ingress:

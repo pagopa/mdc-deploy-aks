@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: snapshot-MMC-1361-get-full-dto-from-entity
+    tag: v1.9.0
     pullPolicy: Always
 
   ingress:

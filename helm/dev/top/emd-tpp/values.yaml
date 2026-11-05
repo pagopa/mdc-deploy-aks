@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: v1.8.0
+    tag: v1.9.0
     pullPolicy: Always
 
   ingress:
@@ -25,6 +25,7 @@ microservice-chart:
     SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE: "35s"
     APPLICATIONINSIGHTS_ROLE_NAME: "emdtpp"
     APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL: "INFO"
+    APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE: "5"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"
     APPLICATIONINSIGHTS_PREVIEW_PROFILER_ENABLED: "false"
     AZURE_KEYVAULT_URL: "https://cstar-d-itn-mdc-kv.vault.azure.net"

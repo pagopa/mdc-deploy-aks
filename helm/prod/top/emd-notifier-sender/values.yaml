@@ -93,6 +93,13 @@ microservice-chart:
 
   envSecret:
     MY_KV_SECRET: cstar-p-itn-prod-aks-apiserver-url
+    # Connection String KEDA
+    KAFKA_CONNECTION_STRING_MESSAGE_CORE_KEDA: evh-emd-courtesy-message-requested-emd-courtesy-message-requested-consumer-keda-conn-string
+    KAFKA_CONNECTION_STRING_NOTIFY_ERROR_KEDA: evh-emd-notification-failed-emd-notification-failed-consumer-keda-conn-string
+
+    # Username KEDA creati su SOPS / Key Vault:
+    KAFKA_USERNAME_MESSAGE_CORE_KEDA: evh-emd-courtesy-message-requested-emd-courtesy-message-requested-consumer-keda-conn-username
+    KAFKA_USERNAME_NOTIFY_ERROR_KEDA: evh-emd-notification-failed-emd-notification-failed-consumer-keda-conn-username
 
   keyvault:
     name: "cstar-p-itn-mdc-kv"

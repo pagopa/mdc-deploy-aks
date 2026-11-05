@@ -20,6 +20,10 @@ microservice-chart:
 
     KEYCLOAK_REALM: "mdc"
     KEYCLOAK_IDP_ALIAS: "selfcare-dev-jwt-grant"
+    KEYCLOAK_IDP_ALIAS_MDC: "azure-entra"
+
+    KEYCLOAK_MAX_PAGE_SIZE: "20"
+    KEYCLOAK_DEFAULT_PAGE_SIZE: "10"
 
     SC_JWT_SET_URI: https://dev.selfcare.pagopa.it/.well-known/jwks.json
     SC_AUTH_EXPECTED_ISSUER: "https://dev.selfcare.pagopa.it"

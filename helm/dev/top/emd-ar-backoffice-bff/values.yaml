@@ -52,6 +52,7 @@ microservice-chart:
     KEYCLOAK_MANAGER_CLIENT_SECRET: ar-backoffice-admin-client-secret
     KEYCLOAK_BACKOFFICE_CLIENT_ID: ar-backoffice-client-id
     KEYCLOAK_BACKOFFICE_CLIENT_SECRET: ar-backoffice-client-secret
+    KEYCLOAK_PORTAL_CLIENT_ID: ar-backoffice-portal-client-id
 
 
   keyvault:

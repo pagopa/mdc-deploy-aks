@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-ar-backoffice-bff
-    tag: v0.13.0
+    tag: v0.14.0
     pullPolicy: Always
 
   ingress:
@@ -14,11 +14,16 @@ microservice-chart:
     REDIRECT_URI: "https://cstaruitnmdcadmin.z38.web.core.windows.net"
     APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED: "false"
     APPLICATIONINSIGHTS_PREVIEW_PROFILER_ENABLED: "false"
+    APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE: "100"
     SERVER_SHUTDOWN: "graceful"
     SPRING_LIFECYCLE_TIMEOUT_PER_SHUTDOWN_PHASE: "35s"
 
     KEYCLOAK_REALM: "mdc"
     KEYCLOAK_IDP_ALIAS: "selfcare-uat-jwt-grant"
+    KEYCLOAK_IDP_ALIAS_MDC: "azure-entra"
+
+    KEYCLOAK_MAX_PAGE_SIZE: "20"
+    KEYCLOAK_DEFAULT_PAGE_SIZE: "10"
 
     SC_JWT_SET_URI: https://uat.selfcare.pagopa.it/.well-known/jwks.json
     SC_AUTH_EXPECTED_ISSUER: "https://uat.selfcare.pagopa.it"

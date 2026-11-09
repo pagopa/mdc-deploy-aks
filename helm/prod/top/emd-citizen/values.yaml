@@ -9,15 +9,11 @@ microservice-chart:
 
   resources:
     requests:
-      # cpu 200m (era 150m): ratio burst 3:1 vs limit 600m → meno throttling quando i pod
-      # sopravvissuti assorbono il picco durante il rolling update (95 req/s cadauno a 190 req/s totali)
-      # memory 896Mi (era 768Mi): heap JVM ~1306Mi + AppInsights agent off-heap ~100Mi +
-      # Netty buffers + metaspace ≈ 400Mi overhead → 896Mi request segnala il working set reale
-      memory: "896Mi"
-      cpu: "200m"
+      memory: "1504Mi"
+      cpu: "235m"
     limits:
-      memory: "1536Mi"
-      cpu: "600m"
+      memory: "1632Mi"
+      cpu: "630m"
 
   autoscaling:
     enable: true

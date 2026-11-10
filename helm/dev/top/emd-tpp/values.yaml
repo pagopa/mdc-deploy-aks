@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: v1.10.1
+    tag: snapshot-MMC-1148-bug-getTppDetails
     pullPolicy: Always
 
   ingress:

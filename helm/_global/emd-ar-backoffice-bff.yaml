@@ -112,6 +112,7 @@ microservice-chart:
     REDIS_CONNECTION_HOSTNAME: emd-redis-primary-connection-hostname
     REDIS_CONNECTION_PASSWORD: emd-redis-primary-access-key
     APPLICATIONINSIGHTS_CONNECTION_STRING: appinsights-instrumentation-key
+    KEYCLOAK_PORTAL_CLIENT_ID: ar-backoffice-portal-client-id
 
   tmpVolumeMount:
     create: true

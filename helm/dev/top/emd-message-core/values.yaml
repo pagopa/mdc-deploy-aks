@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-message-core
-    tag: v1.8.1
+    tag: snapshot-MMC-1422-fix-webclient-response-exception-handler
     pullPolicy: Always
 
   ingress:

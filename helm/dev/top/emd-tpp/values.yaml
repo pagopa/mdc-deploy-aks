@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: v1.10.1
+    tag: snapshot-MMC-964-fix-500-error
     pullPolicy: Always
 
   ingress:

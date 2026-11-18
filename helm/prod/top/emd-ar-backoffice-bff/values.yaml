@@ -35,6 +35,7 @@ microservice-chart:
       -XX:MaxRAMPercentage=85.0
       -XX:+UseG1GC
       -XX:+UseContainerSupport
+      -XX:-UseBASE64Intrinsics
       -Djava.security.egd=file:/dev/./urandom
       -Djava.util.concurrent.ForkJoinPool.common.parallelism=7
       -Dio.netty.eventLoopThreads=100

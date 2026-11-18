@@ -86,6 +86,7 @@ microservice-chart:
       -XX:MaxRAMPercentage=70.0
       -XX:+UseG1GC
       -XX:+UseContainerSupport
+      -XX:-UseBASE64Intrinsics
       -Djava.security.egd=file:/dev/./urandom
       -javaagent:/app/applicationinsights-agent.jar
       -Dapplicationinsights.configuration.file=/mnt/file-config-external/appinsights-config/applicationinsights.json

@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-citizen
-    tag: snapshot-MMC-903-change-regex-on-validation-cf-bloomFilter-api
+    tag: v1.4.2
     pullPolicy: Always
 
   ingress:

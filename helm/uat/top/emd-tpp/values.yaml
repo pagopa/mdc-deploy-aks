@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: v1.10.2@sha256:ffc3dd10b67b869acc92097df6c857fbfe9d969f62d75f99135942210fec73ca
+    tag: v1.10.3
     pullPolicy: Always
 
   ingress:

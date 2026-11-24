@@ -1,7 +1,7 @@
 microservice-chart:
   image:
     repository: ghcr.io/pagopa/emd-tpp
-    tag: snapshot-MMC-1477-dates-to-utc
+    tag: v1.10.3
     pullPolicy: Always
 
   ingress:
